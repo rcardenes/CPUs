@@ -1,0 +1,7 @@
+*.vcd
+*.out
+*.json
+*.asc
+*.bin
+*~
+*.swp
