@@ -1,0 +1,10 @@
+start:
+LDAm (PROG)
+STApc
+DATA:
+DW 0x0000
+DW 0006
+DW ffff
+PROG:
+ADDm (DATA)+2
+BVS  (DATA)

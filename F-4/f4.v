@@ -1,5 +1,29 @@
 `default_nettype none
 
+/*
+instruction	opcode	operand		operation		clocks
+ADD:
+----
+ADDi imm	00 01	16 bit value	imm+(A) --> A		3
+ADDm addr	00 02	16 bit address	(addr)+(A) --> A	4
+ADDpc		00 04	null operand	PC+(A) --> A		3
+
+Branch:
+-------
+BVS addr	00 08	16 bit address	(addr) --> PC if <v>=1	3
+
+Load:
+-----
+LDAi imm	00 10	16 bit value	imm --> A		3
+LDAm addr	00 20	16 bit address	(addr) --> A		3
+LDApc 		00 40	null operand	PC --> A		3
+
+Store:
+------
+STAm addr	00 80	16 bit address	A --> (addr)		3
+STApc PC	01 00	null operand	A --> PC		3
+*/
+
 module f4(clk, rstn);
 
 parameter DW = 16;
@@ -146,29 +170,5 @@ always @(*) begin
 			next_state = STATE_EXEC;
 	endcase
 end
-
-/*
-instruction	opcode	operand		operation		clocks
-ADD:
-----
-ADDi imm	00 01	16 bit value	imm+(A) --> A		3
-ADDm addr	00 02	16 bit address	(addr)+(A) --> A	4
-ADDpc		00 04	null operand	PC+(A) --> A		3
-
-Branch:
--------
-BVS addr	00 08	16 bit address	(addr) --> PC if <v>=1	3
-
-Load:
------
-LDAi imm	00 10	16 bit value	imm --> A		3
-LDAm addr	00 20	16 bit address	(addr) --> A		3
-LDApc 		00 40	null operand	PC --> A		3
-
-Store:
-------
-STAm addr	00 80	16 bit address	A --> (addr)		3
-STApc PC	01 00	null operand	A --> PC		3
-*/
 
 endmodule
